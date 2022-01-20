@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="141" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="NewsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="280"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="280"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown" translatesAutoresizingMaskIntoConstraints="NO" id="a0F-TD-KMR">
+                        <rect key="frame" x="10" y="13" width="381" height="225"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="a0F-TD-KMR" secondAttribute="height" multiplier="127:62" constant="-79.887096774193537" id="FXX-dx-WET"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ita-Wh-hDg">
+                        <rect key="frame" x="10" y="251" width="381" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="a0F-TD-KMR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="2Mc-96-ogb"/>
+                    <constraint firstAttribute="trailing" secondItem="a0F-TD-KMR" secondAttribute="trailing" constant="9" id="K6l-lx-ZQ3"/>
+                    <constraint firstItem="Ita-Wh-hDg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="P7c-cx-vXL"/>
+                    <constraint firstAttribute="bottom" secondItem="Ita-Wh-hDg" secondAttribute="bottom" constant="11" id="QCT-fa-dFu"/>
+                    <constraint firstItem="a0F-TD-KMR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="WVg-NC-yB6"/>
+                    <constraint firstItem="Ita-Wh-hDg" firstAttribute="top" secondItem="a0F-TD-KMR" secondAttribute="bottom" constant="13" id="dbY-dQ-XK5"/>
+                    <constraint firstAttribute="trailing" secondItem="Ita-Wh-hDg" secondAttribute="trailing" constant="9" id="oyg-Ps-bRN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="headlineImageView" destination="a0F-TD-KMR" id="vVJ-hJ-XKE"/>
+                <outlet property="titleLabel" destination="Ita-Wh-hDg" id="mhE-69-A2i"/>
+            </connections>
+            <point key="canvasLocation" x="195.6521739130435" y="125.22321428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Unknown" width="180" height="180"/>
+    </resources>
+</document>

@@ -69,7 +69,7 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
             }
             
             if let urlString = URL(string: String(self.newsArray?[indexPath.row].imageUrl ?? "")){
-                DispatchQueue.global().async {
+                DispatchQueue.main.async {
                     cell.headlineImageView.kf.setImage(with: urlString)
                 }
             }

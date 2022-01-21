@@ -1,34 +1,32 @@
 //
-//  ViewController.swift
+//  WorldViewController.swift
 //  NewsApp
 //
-//  Created by MacBook Air on 17.01.2022.
+//  Created by MacBook Air on 21.01.2022.
 //
 
 import UIKit
-import Kingfisher
 
-class HeadlineViewController: UIViewController{
+class PolicyViewController: UIViewController {
+
+    
+    @IBOutlet weak var policyTableView: UITableView!
     
     private var newsListViewModel : NewsListViewModel?
-
-    @IBOutlet weak var headlineTableView: UITableView!
-    @IBOutlet weak var headlinesLabel: UILabel!
+    
     var newsArray : [NewsDetail]? = []
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        headlinesLabel.textColor = UIColor.red
-        getData()
-        headlineTableView.dataSource = self
-        headlineTableView.delegate = self
+        policyTableView.delegate = self
+        policyTableView.dataSource = self
         self.tabBarController?.delegate = self
-        self.headlineTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.policyTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        getData()
     }
     
-    
     func getData() {
-            WebService().downloadNews(path: App.headlinesPath) { News in
+            WebService().downloadNews(path: App.policyPath) { News in
                 if let News = News {
                     self.newsListViewModel = NewsListViewModel(newsList: News)
                     DispatchQueue.main.async {
@@ -37,7 +35,7 @@ class HeadlineViewController: UIViewController{
                                 self.newsArray?.append(NewsDetail(category: newsListViewModel.newsList.news[counter].category, title: newsListViewModel.newsList.news[counter].title, spot: newsListViewModel.newsList.news[counter].spot, imageUrl: newsListViewModel.newsList.news[counter].imageUrl, videoUrl: newsListViewModel.newsList.news[counter].videoUrl, webUrl: newsListViewModel.newsList.news[counter].webUrl))
                             }
                         }
-                        self.headlineTableView.reloadData()
+                        self.policyTableView.reloadData()
                     }
                    
                 }
@@ -48,9 +46,9 @@ class HeadlineViewController: UIViewController{
 
 }
 
-// MARK: UITableViewDataSource, UITableViewDelegate
+//MARK: UITableViewDelegate, UITableViewDataSource
 
-extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
+extension PolicyViewController :  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.newsArray?.count ?? 0
     }
@@ -98,13 +96,12 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
 //MARK:  UITabBarControllerDelegate
 
-extension HeadlineViewController :  UITabBarControllerDelegate {
+extension PolicyViewController :  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let indexPath = IndexPath(row: 0, section: 0)
-        headlineTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        policyTableView.scrollToRow(at: indexPath, at: .top, animated: true)
       }
     
 }

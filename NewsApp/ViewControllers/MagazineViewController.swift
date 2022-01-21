@@ -11,15 +11,16 @@ class MagazineViewController: UIViewController {
 
     private var newsListViewModel : NewsListViewModel?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var magazineTableView: UITableView!
     
     var newsArray : [NewsDetail]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.tableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        magazineTableView.delegate = self
+        magazineTableView.dataSource = self
+        self.tabBarController?.delegate = self
+        self.magazineTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         getData()
     }
     
@@ -33,7 +34,7 @@ class MagazineViewController: UIViewController {
                                 self.newsArray?.append(NewsDetail(category: newsListViewModel.newsList.news[counter].category, title: newsListViewModel.newsList.news[counter].title, spot: newsListViewModel.newsList.news[counter].spot, imageUrl: newsListViewModel.newsList.news[counter].imageUrl, videoUrl: newsListViewModel.newsList.news[counter].videoUrl, webUrl: newsListViewModel.newsList.news[counter].webUrl))
                             }
                         }
-                        self.tableView.reloadData()
+                        self.magazineTableView.reloadData()
                     }
                    
                 }
@@ -86,13 +87,25 @@ extension MagazineViewController :  UITableViewDelegate, UITableViewDataSource {
         cell.layer.transform = rotationTransform
         cell.alpha = 0.5
         
-        UIView.animate(withDuration: 0.2){
+        UIView.animate(withDuration: 0.1){
             cell.layer.transform = CATransform3DIdentity
             cell.alpha = 1.0
         }
     }
     
 }
+
+
+//MARK:  UITabBarControllerDelegate
+
+extension MagazineViewController :  UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        magazineTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+      }
+    
+}
+
 
 
 

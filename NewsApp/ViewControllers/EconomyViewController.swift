@@ -1,34 +1,31 @@
 //
-//  ViewController.swift
+//  EconomyViewController.swift
 //  NewsApp
 //
-//  Created by MacBook Air on 17.01.2022.
+//  Created by MacBook Air on 21.01.2022.
 //
 
 import UIKit
-import Kingfisher
 
-class HeadlineViewController: UIViewController{
-    
+class EconomyViewController: UIViewController {
+
     private var newsListViewModel : NewsListViewModel?
+    
 
-    @IBOutlet weak var headlineTableView: UITableView!
-    @IBOutlet weak var headlinesLabel: UILabel!
+    @IBOutlet weak var economyTableView: UITableView!
     var newsArray : [NewsDetail]? = []
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        headlinesLabel.textColor = UIColor.red
-        getData()
-        headlineTableView.dataSource = self
-        headlineTableView.delegate = self
+        economyTableView.delegate = self
+        economyTableView.dataSource = self
         self.tabBarController?.delegate = self
-        self.headlineTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        self.economyTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        getData()
     }
     
-    
     func getData() {
-            WebService().downloadNews(path: App.headlinesPath) { News in
+            WebService().downloadNews(path: App.economyPath) { News in
                 if let News = News {
                     self.newsListViewModel = NewsListViewModel(newsList: News)
                     DispatchQueue.main.async {
@@ -37,7 +34,7 @@ class HeadlineViewController: UIViewController{
                                 self.newsArray?.append(NewsDetail(category: newsListViewModel.newsList.news[counter].category, title: newsListViewModel.newsList.news[counter].title, spot: newsListViewModel.newsList.news[counter].spot, imageUrl: newsListViewModel.newsList.news[counter].imageUrl, videoUrl: newsListViewModel.newsList.news[counter].videoUrl, webUrl: newsListViewModel.newsList.news[counter].webUrl))
                             }
                         }
-                        self.headlineTableView.reloadData()
+                        self.economyTableView.reloadData()
                     }
                    
                 }
@@ -48,9 +45,9 @@ class HeadlineViewController: UIViewController{
 
 }
 
-// MARK: UITableViewDataSource, UITableViewDelegate
+//MARK: UITableViewDelegate, UITableViewDataSource
 
-extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
+extension EconomyViewController :  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.newsArray?.count ?? 0
     }
@@ -98,13 +95,14 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
 //MARK:  UITabBarControllerDelegate
 
-extension HeadlineViewController :  UITabBarControllerDelegate {
+extension EconomyViewController :  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let indexPath = IndexPath(row: 0, section: 0)
-        headlineTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        economyTableView.scrollToRow(at: indexPath, at: .top, animated: true)
       }
     
 }
+
+

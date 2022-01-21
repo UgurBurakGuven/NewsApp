@@ -14,6 +14,8 @@
 		D05BCD992795B64F001B850E /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BCD982795B64F001B850E /* NewsModel.swift */; };
 		D05BCD9C2795B7E8001B850E /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BCD9B2795B7E8001B850E /* NewsViewModel.swift */; };
 		D05BCD9E2795BA4F001B850E /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BCD9D2795BA4F001B850E /* AppUtilities.swift */; };
+		D0602B00279AAC6E0092413F /* EconomyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0602AFF279AAC6D0092413F /* EconomyViewController.swift */; };
+		D0602B02279AADF80092413F /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0602B01279AADF80092413F /* PolicyViewController.swift */; };
 		D06B3B0927957A84001A25EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B3B0827957A84001A25EE /* AppDelegate.swift */; };
 		D06B3B0B27957A84001A25EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B3B0A27957A84001A25EE /* SceneDelegate.swift */; };
 		D06B3B0D27957A84001A25EE /* HeadlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B3B0C27957A84001A25EE /* HeadlineViewController.swift */; };
@@ -22,7 +24,7 @@
 		D06B3B2727957C20001A25EE /* HeadlineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06B3B2527957C20001A25EE /* HeadlineTableViewCell.xib */; };
 		D06B3B2927958034001A25EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06B3B2827958034001A25EE /* Assets.xcassets */; };
 		D0A9B1F5279A08B50022147F /* MagazineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9B1F4279A08B50022147F /* MagazineViewController.swift */; };
-		D0BB2D47279A03A50008B386 /* SporViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB2D46279A03A50008B386 /* SporViewController.swift */; };
+		D0BB2D47279A03A50008B386 /* SportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB2D46279A03A50008B386 /* SportViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		D05BCD982795B64F001B850E /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		D05BCD9B2795B7E8001B850E /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		D05BCD9D2795BA4F001B850E /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		D0602AFF279AAC6D0092413F /* EconomyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomyViewController.swift; sourceTree = "<group>"; };
+		D0602B01279AADF80092413F /* PolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
 		D06B3B0527957A84001A25EE /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06B3B0827957A84001A25EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D06B3B0A27957A84001A25EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +48,7 @@
 		D06B3B2527957C20001A25EE /* HeadlineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadlineTableViewCell.xib; sourceTree = "<group>"; };
 		D06B3B2827958034001A25EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0A9B1F4279A08B50022147F /* MagazineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagazineViewController.swift; sourceTree = "<group>"; };
-		D0BB2D46279A03A50008B386 /* SporViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporViewController.swift; sourceTree = "<group>"; };
+		D0BB2D46279A03A50008B386 /* SportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportViewController.swift; sourceTree = "<group>"; };
 		DD8E1FACB62BFF9F397F54CE /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,8 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				D06B3B0C27957A84001A25EE /* HeadlineViewController.swift */,
-				D0BB2D46279A03A50008B386 /* SporViewController.swift */,
+				D0BB2D46279A03A50008B386 /* SportViewController.swift */,
 				D0A9B1F4279A08B50022147F /* MagazineViewController.swift */,
+				D0602AFF279AAC6D0092413F /* EconomyViewController.swift */,
+				D0602B01279AADF80092413F /* PolicyViewController.swift */,
 				D038D8822795D1F900994561 /* DetailsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -277,9 +283,11 @@
 				D0A9B1F5279A08B50022147F /* MagazineViewController.swift in Sources */,
 				D05BCD992795B64F001B850E /* NewsModel.swift in Sources */,
 				D06B3B0D27957A84001A25EE /* HeadlineViewController.swift in Sources */,
+				D0602B00279AAC6E0092413F /* EconomyViewController.swift in Sources */,
 				D038D8832795D1F900994561 /* DetailsViewController.swift in Sources */,
 				D05BCD9E2795BA4F001B850E /* AppUtilities.swift in Sources */,
-				D0BB2D47279A03A50008B386 /* SporViewController.swift in Sources */,
+				D0BB2D47279A03A50008B386 /* SportViewController.swift in Sources */,
+				D0602B02279AADF80092413F /* PolicyViewController.swift in Sources */,
 				D06B3B0927957A84001A25EE /* AppDelegate.swift in Sources */,
 				D06B3B0B27957A84001A25EE /* SceneDelegate.swift in Sources */,
 				D05BCD9C2795B7E8001B850E /* NewsViewModel.swift in Sources */,

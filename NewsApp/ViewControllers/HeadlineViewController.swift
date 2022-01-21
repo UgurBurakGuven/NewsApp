@@ -18,12 +18,16 @@ class HeadlineViewController: UIViewController{
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        headlinesLabel.textColor = UIColor.red
         getData()
         headlineTableView.dataSource = self
         headlineTableView.delegate = self
-        self.tabBarController?.delegate = self
         self.headlineTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+    
+        let label = UILabel()
+        label.textColor = UIColor.red
+        label.font = UIFont(name: "Georgia-Bold", size: 30)
+        label.text = "Headline"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
     
     
@@ -57,6 +61,7 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tabBarController?.delegate = self
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell {
        
             if let title = self.newsArray?[indexPath.row].title {
@@ -103,8 +108,9 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension HeadlineViewController :  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+     
         let indexPath = IndexPath(row: 0, section: 0)
         headlineTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-      }
-    
+      
+    }
 }

@@ -20,9 +20,13 @@ class PolicyViewController: UIViewController {
         super.viewDidLoad()
         policyTableView.delegate = self
         policyTableView.dataSource = self
-        self.tabBarController?.delegate = self
         self.policyTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         getData()
+        let label = UILabel()
+        label.textColor = UIColor.systemBrown
+        label.font = UIFont(name: "Georgia-Bold", size: 30)
+        label.text = "Policy"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
     
     func getData() {
@@ -55,6 +59,7 @@ extension PolicyViewController :  UITableViewDelegate, UITableViewDataSource {
  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tabBarController?.delegate = self
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell {
        
             if let title = self.newsArray?[indexPath.row].title {
@@ -100,8 +105,10 @@ extension PolicyViewController :  UITableViewDelegate, UITableViewDataSource {
 
 extension PolicyViewController :  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+
         let indexPath = IndexPath(row: 0, section: 0)
         policyTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+       
       }
     
 }

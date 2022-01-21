@@ -19,9 +19,13 @@ class MagazineViewController: UIViewController {
         super.viewDidLoad()
         magazineTableView.delegate = self
         magazineTableView.dataSource = self
-        self.tabBarController?.delegate = self
         self.magazineTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         getData()
+        let label = UILabel()
+        label.textColor = UIColor.systemPurple
+        label.font = UIFont(name: "Georgia-Bold", size: 30)
+        label.text = "Magazine"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
     
     func getData() {
@@ -54,6 +58,7 @@ extension MagazineViewController :  UITableViewDelegate, UITableViewDataSource {
  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tabBarController?.delegate = self
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell {
        
             if let title = self.newsArray?[indexPath.row].title {

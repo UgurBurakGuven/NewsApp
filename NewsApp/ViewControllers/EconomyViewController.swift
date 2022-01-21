@@ -19,9 +19,13 @@ class EconomyViewController: UIViewController {
         super.viewDidLoad()
         economyTableView.delegate = self
         economyTableView.dataSource = self
-        self.tabBarController?.delegate = self
         self.economyTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         getData()
+        let label = UILabel()
+        label.textColor = UIColor.systemCyan
+        label.font = UIFont(name: "Georgia-Bold", size: 30)
+        label.text = "Economy"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
     
     func getData() {
@@ -54,6 +58,7 @@ extension EconomyViewController :  UITableViewDelegate, UITableViewDataSource {
  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tabBarController?.delegate = self
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell {
        
             if let title = self.newsArray?[indexPath.row].title {
@@ -99,8 +104,10 @@ extension EconomyViewController :  UITableViewDelegate, UITableViewDataSource {
 
 extension EconomyViewController :  UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+   
         let indexPath = IndexPath(row: 0, section: 0)
         economyTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+     
       }
     
 }

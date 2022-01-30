@@ -21,21 +21,21 @@ struct NewsViewModel {
     
     var category : String?
     {
-        return self.newsList.news[0].category
+        return self.newsList.news.first?.category
     }
     var title : String? {
-        return self.newsList.news[0].title
+        return self.newsList.news.first?.title
     }
     var spot : String?  {
-        return self.newsList.news[0].spot
+        return self.newsList.news.first?.spot
     }
     var imageUrl : String? {
-        return self.newsList.news[0].imageUrl
+        return self.newsList.news.first?.imageUrl
     }
     var videoUrl : String? {
-        return self.newsList.news[0].videoUrl
+        return self.newsList.news.first?.videoUrl
     }
     var webUrl : String? {
-        return self.newsList.news[0].webUrl
+        return self.newsList.news.first?.webUrl
     }
 }

@@ -19,12 +19,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var loadingButton: UIButton!
     @IBOutlet weak var spot: UILabel!
-
     
-    var selectedVideoUrl : String = ""
-    var selectedTitle : String?
-    var selectedSpot : String?
-    var selectedLink : String?
+    var selectedNew : NewsDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,29 +28,32 @@ class DetailsViewController: UIViewController {
     }
     
     func getData(){
-        if let selectedSpot = selectedSpot {
+        if let selectedSpot = selectedNew?.spot{
             self.spot.text = selectedSpot
         }
         
-        if let selectedTitle = selectedTitle {
+        if let selectedTitle = selectedNew?.title {
             self.detailsTitleLabel.text = selectedTitle
         }
         self.playButton.isHidden = true
         self.imageView.backgroundColor = .gray
         self.loadingButton.isHidden = false
-       
-        if let url = URL(string: "\(selectedVideoUrl.dropLast(14))") {
-            self.getthumbnailFromImage(url: url) { (thumbImage) in
-                self.imageView.backgroundColor = nil
-                self.imageView.image = thumbImage
+        
+        if let selectedVideoUrl = selectedNew?.videoUrl {
+            if let url = URL(string: "\(selectedVideoUrl.dropLast(14))") {
+                self.getthumbnailFromImage(url: url) { (thumbImage) in
+                    self.imageView.backgroundColor = nil
+                    self.imageView.image = thumbImage
+                    self.loadingButton.isHidden = true
+                    self.playButton.isHidden = false
+                }
+            } else {
                 self.loadingButton.isHidden = true
-                self.playButton.isHidden = false
+                self.imageView.backgroundColor = .gray
+                self.imageView.image = UIImage(named: "noVideo")
             }
-        } else {
-            self.loadingButton.isHidden = true
-            self.imageView.backgroundColor = .gray
-            self.imageView.image = UIImage(named: "noVideo")
         }
+        
     }
     
     @IBAction func videoPlayActionButton(_ sender: Any) {
@@ -62,13 +61,14 @@ class DetailsViewController: UIViewController {
     }
     
     func playVideo(){
-        
-        let url : URL = URL(string: "\(selectedVideoUrl.dropLast(14))")!
-        playerView = AVPlayer(url: url as URL)
-        playerViewController.player = playerView
-        
-        self.present(playerViewController, animated: true) {
-            self.playerViewController.player?.play()
+        if let selectedVideoUrl = selectedNew?.videoUrl {
+            let url : URL = URL(string: "\(selectedVideoUrl.dropLast(14))")!
+            playerView = AVPlayer(url: url as URL)
+            playerViewController.player = playerView
+            
+            self.present(playerViewController, animated: true) {
+                self.playerViewController.player?.play()
+            }
         }
     }
     func getthumbnailFromImage(url: URL, completion: @escaping ((_ image: UIImage?)->Void)){
@@ -92,7 +92,8 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func linkButtonClicked(_ sender: Any) {
-        if let selectedLink = selectedLink {
+        
+        if let selectedLink = selectedNew?.webUrl {
             UIApplication.shared.open(URL(string: "\(selectedLink)")!)
         }
       

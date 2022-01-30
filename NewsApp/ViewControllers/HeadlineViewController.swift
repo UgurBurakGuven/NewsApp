@@ -34,7 +34,7 @@ class HeadlineViewController: UIViewController{
     func getData() {
             WebService().downloadNews(path: App.headlinesPath) { News in
                 if let News = News {
-                    self.newsListViewModel = NewsListViewModel(newsList: News)
+                     self.newsListViewModel = NewsListViewModel(newsList: News)
                     DispatchQueue.main.async {
                         if let newsListViewModel = self.newsListViewModel {
                             for counter in 0..<newsListViewModel.numberOfRowsInSection(){
@@ -62,7 +62,7 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.tabBarController?.delegate = self
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HeadlineTableViewCell {
        
             if let title = self.newsArray?[indexPath.row].title {
                 cell.titleLabel.text = title
@@ -83,10 +83,7 @@ extension HeadlineViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyBoard.instantiateViewController(withIdentifier: "toDetailsVC") as! DetailsViewController
-        detailVC.selectedTitle = self.newsArray?[indexPath.row].title ?? ""
-        detailVC.selectedVideoUrl = self.newsArray?[indexPath.row].videoUrl ?? ""
-        detailVC.selectedSpot = self.newsArray?[indexPath.row].spot ?? ""
-        detailVC.selectedLink = self.newsArray?[indexPath.row].webUrl ?? ""
+        detailVC.selectedNew = self.newsArray?[indexPath.row]
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     

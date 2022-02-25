@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Moya
 
 class EconomyViewController: UIViewController {
 
     private var newsListViewModel : NewsListViewModel?
-    
+    let provider = MoyaProvider<MyService>()
 
     @IBOutlet weak var economyTableView: UITableView!
     var newsArray : [NewsDetail]? = []
@@ -20,7 +21,7 @@ class EconomyViewController: UIViewController {
         economyTableView.delegate = self
         economyTableView.dataSource = self
         self.economyTableView.register(UINib(nibName: "HeadlineTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        getData()
+        provider.request(.getEconomy, completion: getNewsType(result:))
         let label = UILabel()
         label.textColor = UIColor.systemCyan
         label.font = UIFont(name: "Georgia-Bold", size: 30)
@@ -28,24 +29,34 @@ class EconomyViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
     
-    func getData() {
-            WebService().downloadNews(path: App.economyPath) { News in
-                if let News = News {
-                    self.newsListViewModel = NewsListViewModel(newsList: News)
-                    DispatchQueue.main.async {
-                        if let newsListViewModel = self.newsListViewModel {
-                            for counter in 0..<newsListViewModel.numberOfRowsInSection(){
-                                self.newsArray?.append(NewsDetail(category: newsListViewModel.newsList.news[counter].category, title: newsListViewModel.newsList.news[counter].title, spot: newsListViewModel.newsList.news[counter].spot, imageUrl: newsListViewModel.newsList.news[counter].imageUrl, videoUrl: newsListViewModel.newsList.news[counter].videoUrl, webUrl: newsListViewModel.newsList.news[counter].webUrl))
-                            }
+    func getNewsType(result: Result<Response, MoyaError>){
+        switch result {
+        case .success(let response):
+            decodeAndShow(response)
+        case .failure(let error):
+                   print(error.localizedDescription)
+               }
+        }
+    
+    fileprivate func decodeAndShow(_ response: (Response)) {
+            do {
+                let decodedData = try response.map(News.self)
+                self.newsListViewModel = NewsListViewModel(newsList: decodedData)
+                DispatchQueue.main.async {
+                    if let newsListViewModel = self.newsListViewModel {
+                        for counter in 0..<newsListViewModel.numberOfRowsInSection(){
+                            self.newsArray?.append(NewsDetail(category: newsListViewModel.newsList.news[counter].category, title: newsListViewModel.newsList.news[counter].title, spot: newsListViewModel.newsList.news[counter].spot, imageUrl: newsListViewModel.newsList.news[counter].imageUrl, videoUrl: newsListViewModel.newsList.news[counter].videoUrl, webUrl: newsListViewModel.newsList.news[counter].webUrl))
                         }
-                        self.economyTableView.reloadData()
                     }
-                   
+                    self.economyTableView.reloadData()
                 }
-           
+                
             }
-       
-    }
+            catch {
+                print(error)
+            }
+        }
+ 
 
 }
 

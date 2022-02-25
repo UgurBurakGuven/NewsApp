@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import AVKit
+import Moya
 
 class DetailsViewController: UIViewController {
 

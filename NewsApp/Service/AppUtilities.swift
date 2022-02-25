@@ -9,9 +9,11 @@ import Foundation
 
 struct App {
     static let baseUrl = "http://app.haberler.com"
-    static let headlinesPath = "/services/haberlercom/2.11/service.asmx/haberler?category=manset&count=35&offset=0&deviceType=1&userId=61ed99e0c09a8664"
-    static let sporPath = "/services/haberlercom/2.11/service.asmx/haberler?category=spor&count=35&offset=0&deviceType=1&userId=61ed99e0c09a8664"
-    static let magazinePath = "/services/haberlercom/2.11/service.asmx/haberler?category=magazin&count=35&offset=0&deviceType=1&userId=61ed99e0c09a8664"
-    static let economyPath = "/services/haberlercom/2.11/service.asmx/haberler?category=ekonomi&%20count=35&offset=0&deviceType=1&userId=61ed99e0c09a8664"
-    static let policyPath = "/services/haberlercom/2.11/service.asmx/haberler?category=politika&%20count=35&offset=0&deviceType=1&userId=61ed99e0c09a8664"
+    static let baseTypeUrl = "/services/haberlercom/2.11/service.asmx/haberler?category="
+    static let headlinesPath = "manset&count=35&offset=0&deviceType=1&userId="
+    static let sporPath = "spor&count=35&offset=0&deviceType=1&userId="
+    static let magazinePath = "magazin&count=35&offset=0&deviceType=1&userId="
+    static let economyPath = "ekonomi&%20count=35&offset=0&deviceType=1&userId="
+    static let policyPath = "politika&%20count=35&offset=0&deviceType=1&userId="
+    static let userId = "61ed99e0c09a8664"
 }

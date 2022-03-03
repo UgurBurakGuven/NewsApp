@@ -2,7 +2,7 @@
 
 ### - A news application with details.
 ### - Using MVVM principle.
-### - Shot using MOYA from Habertürk database.
+### - Shot using MOYA from Habertürk API.
 
 ## * Pictures of the app *
 <p float="left">
